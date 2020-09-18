@@ -6,6 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 
+/**
+ *
+ *  总结：
+ *  1、Target 为 ANNOTATION_TYPE 的叫做元注解，使用在注解上面的注解
+ *  2、属性可以通过 default 关键字给默认值
+ *  3、使用getAnnotations()得到所有注解信息。使用getAnnotation(clazz),getDeclaredAnnotation(clazz)得到对应的注解对象
+ *
+ */
 public class AnotationReview {
 
 
@@ -33,11 +41,6 @@ public class AnotationReview {
      *         Field field = cls.getDeclaredField("one");
      *         AnnotationOne annotationOne = field.getDeclaredAnnotation(AnnotationOne.class);
      *         System.out.println(annotationOne.value());
-     *
-     * 总结：
-     * 1、Target 为 ANNOTATION_TYPE 的叫做元注解，使用在注解上面的注解
-     * 2、属性可以通过 default 关键字给默认值
-     * 3、使用getAnnotations()得到所有注解信息。使用getAnnotation(clazz),getDeclaredAnnotation(clazz)得到对应的注解对象
      *
      */
 
