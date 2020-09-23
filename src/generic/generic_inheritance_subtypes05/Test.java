@@ -52,6 +52,13 @@ public class Test {
 //类型校验不通过
 //        stringList = arrayList1;
 
+
+        //类型参数具有继承，和泛型类也具有继承，能进行转换吗？
+        //结果看样子是没有问题的
+        ArrayList<Integer> integers = new ArrayList<>();
+        test3(integers);
+
+
     }
 
     public static void test0(Number numberBox) {}
@@ -63,6 +70,12 @@ public class Test {
     static void test2(List<String> strings) {
 
     }
+
+    //类型参数具有继承，和泛型类也具有继承，能进行转换吗？
+    static <T extends Number> void test3(List<T> list) {
+
+    }
+
 
 }
 
