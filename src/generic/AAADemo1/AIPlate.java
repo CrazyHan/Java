@@ -19,7 +19,7 @@ public class AIPlate<T> implements Plate<T>{
     @Override
     public T get() {
         int index = items.size()-1;
-        if(index>0){
+        if(index>=0){
             return items.get(index);
         }
         return null;

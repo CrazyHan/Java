@@ -21,7 +21,7 @@ public class RawPlate implements Plate{
     @Override
     public Object get() {
         int index = fruit.size()-1;
-        if (index > 0) {
+        if (index >= 0) {
             return fruit.get(index);
         }
         return null;
