@@ -1,14 +1,58 @@
 package thread;
 
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+
+import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0.runnable;
 
 public class ThreadBase {
 
     public static void main(String[] args) throws InterruptedException {
 
-        testOrder2();
+//        testOrder2();
+        testSource3();
+    }
+
+
+    static Semaphore semaphore = new Semaphore(2);
+    static class CustomRunnable implements Runnable {
+
+        String name;
+
+        public CustomRunnable(String name){
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            try {
+                semaphore.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(name+"开始执行");
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            semaphore.release();
+
+        }
+    }
+
+    public static void testSource3(){
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        executorService.execute(new CustomRunnable("A"));
+        executorService.execute(new CustomRunnable("B"));
+        executorService.execute(new CustomRunnable("C"));
+        executorService.execute(new CustomRunnable("D"));
+        executorService.execute(new CustomRunnable("E"));
 
     }
 
